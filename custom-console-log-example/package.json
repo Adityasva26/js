@@ -1,0 +1,9 @@
+{
+  "name": "custom-console-log-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "description": "A custom console.log function with timestamp",
+  "keywords": ["console", "log", "timestamp"],
+  "author": "Aditya Sharma",
+  "license": "MIT"
+}
