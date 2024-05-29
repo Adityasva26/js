@@ -1,12 +1,18 @@
-const alarms = [];
+// ---------------------------------------
+// ---------------------------------------
+// ----------AN ALARM CLOCK---------------
+// ---------------------------------------
+// ---------------------------------------
 
+const alarms = [];
+// This displayCurrentTime is a showing current time
 function displayCurrentTime() {
     setInterval(() => {
         const currentTime = new Date();
         console.log(currentTime.toLocaleTimeString());
     }, 1000);
 }
-
+// This function used to addAlarm
 function addAlarm(time, day) {
     alarms.push({
         time,
@@ -14,7 +20,7 @@ function addAlarm(time, day) {
         snoozeCount: 0
     });
 }
-
+// This function used to delete Alarm
 function deleteAlarm(time, day) {
     const index = alarms.findIndex(alarm => alarm.time === time && alarm.day === day);
     if (index > -1) {
@@ -23,7 +29,7 @@ function deleteAlarm(time, day) {
         console.log(`Alarm for ${time} on ${day} not found.`);
     }
 }
-
+// This function used to snoozeAlarm
 function snoozeAlarm(time, day) {
     const alarm = alarms.find(alarm => alarm.time === time && alarm.day === day);
     if (alarm) {
@@ -45,7 +51,7 @@ function snoozeAlarm(time, day) {
         console.log(`Alarm for ${time} on ${day} not found.`);
     }
 }
-
+// This function used to check Alarms in every minute
 function checkAlarms() {
     setInterval(() => {
         const now = new Date();
@@ -57,20 +63,20 @@ function checkAlarms() {
                 console.log(`Alarm ringing for ${alarm.time} on ${alarm.day}`);
             }
         });
-    }, 60000); // Check every minute
+    }, 60000); 
 }
 
-// Example usage
+// Here you cant set the alarm 
 displayCurrentTime();
 addAlarm("18:21", "Tuesday");
 addAlarm("18:30", "Tuesday");
 checkAlarms();
-
+// Snooze after 1 minute
 setTimeout(() => {
     snoozeAlarm("09:00", "Monday");
-}, 60000); // Snooze after 1 minute
-
+}, 60000); 
+// Delete alarm after 2 minutes
 setTimeout(() => {
     deleteAlarm("10:30", "Tuesday");
     console.log("Alarm for 10:30 on Tuesday deleted.");
-}, 120000); // Delete alarm after 2 minutes
+}, 120000); 
