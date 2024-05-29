@@ -4,7 +4,7 @@
 // ---------------------------------------
 // ---------------------------------------
 
-const alarms = [];
+const alarmlist = [];
 // This displayCurrentTime is a showing current time
 function displayCurrentTime() {
     setInterval(() => {
@@ -14,7 +14,7 @@ function displayCurrentTime() {
 }
 // This function used to addAlarm
 function addAlarm(time, day) {
-    alarms.push({
+    alarmlist.push({
         time,
         day,
         snoozeCount: 0
@@ -22,16 +22,16 @@ function addAlarm(time, day) {
 }
 // This function used to delete Alarm
 function deleteAlarm(time, day) {
-    const index = alarms.findIndex(alarm => alarm.time === time && alarm.day === day);
+    const index = alarmlist.findIndex(alarm => alarm.time === time && alarm.day === day);
     if (index > -1) {
-        alarms.splice(index, 1);
+        alarmlist.splice(index, 1);
     } else {
         console.log(`Alarm for ${time} on ${day} not found.`);
     }
 }
 // This function used to snoozeAlarm
 function snoozeAlarm(time, day) {
-    const alarm = alarms.find(alarm => alarm.time === time && alarm.day === day);
+    const alarm = alarmlist.find(alarm => alarm.time === time && alarm.day === day);
     if (alarm) {
         if (alarm.snoozeCount < 3) {
             let [hours, minutes] = alarm.time.split(':').map(Number);
@@ -58,7 +58,7 @@ function checkAlarms() {
         const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
         const currentDay = now.toLocaleDateString('en-US', { weekday: 'long' });
 
-        alarms.forEach(alarm => {
+        alarmlist.forEach(alarm => {
             if (alarm.time === currentTime && alarm.day === currentDay) {
                 console.log(`Alarm ringing for ${alarm.time} on ${alarm.day}`);
             }
